@@ -23,7 +23,7 @@ setup(
     author_email="konrad.malik@gmail.com",
     license="LGPL-2.1",
     description="Library/cli tool for https://dane.sat4envi.imgw.pl/",
-    url="https://github.com/IMGW-PIB/py4envi",
+    url="https://github.com/konradmalik/py4envi",
     python_requires=">=3.7",
     install_requires=REQUIRES,
     packages=find_packages(exclude=["test", "tests"]),

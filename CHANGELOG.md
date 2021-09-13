@@ -15,6 +15,16 @@ Unreleased changes will be listed here.
 
 ### Fixed
 
+## [0.0.3] - 2021-09-13
+
+Forked repo
+
+### Added
+
+## Changed
+
+### Fixed
+
 ## [0.0.2] - 2021-05-01
 
 Initial release with fixed pypi version
