@@ -1,4 +1,5 @@
 import os
+from pathlib import Path
 import tempfile
 from unittest.mock import patch, Mock
 from py4envi import util
@@ -16,6 +17,7 @@ def test_filename_from_url():
 def test_download():
     bts = "abcd1234_%$#".encode()
     with tempfile.TemporaryDirectory() as dir:
+        pdir = Path(dir)
 
         with patch("py4envi.util.requests.get") as mock_get:
             # Configure the mock to return a proper response
@@ -27,7 +29,7 @@ def test_download():
             }
 
             # Call the service, which will send a request to the server.
-            path = util.download("http://fake.pl/file.zip", dir)
+            path = util.download("http://fake.pl/file.zip", pdir)
 
             assert str(path).endswith("file.zip")
             with open(path, "rb") as f:
@@ -40,7 +42,7 @@ def test_download():
             with open(path, "wb") as f:
                 f.write(bts[:2])
 
-            path = util.download("http://fake.pl/file.zip", dir)
+            path = util.download("http://fake.pl/file.zip", pdir)
             assert str(path).endswith("file.zip")
             with open(path, "rb") as f:
                 read_bts = f.read()

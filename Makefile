@@ -10,6 +10,7 @@ $(VENV_NAME)/bin/activate: test-requirements.txt requirements.txt setup.py
 	python -m virtualenv -p python3 $(VENV_NAME)
 	${PYTHON} -m pip install -U pip
 	${PYTHON} -m pip install -r test-requirements.txt -r requirements.txt
+	${PYTHON} -m mypy --install-types --non-interactive ${LINTED}
 	touch $(VENV_NAME)/bin/activate
 
 clean:
@@ -23,7 +24,7 @@ clean:
 lint: venv
 	${PYTHON} -m black ${LINTED}
 	${PYTHON} -m autoflake --in-place --recursive --remove-all-unused-imports ${LINTED}
-	${PYTHON} -m mypy --ignore-missing-imports --follow-imports=skip ${LINTED}
+	${PYTHON} -m mypy ${LINTED}
 
 test: venv
 	${PYTHON} -m pytest tests --capture=no --verbose 

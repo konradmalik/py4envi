@@ -23,6 +23,10 @@ Forked repo
 
 ## Changed
 
+- License to private
+- mypy to 0.910
+- mypy config and more strict checks
+
 ### Fixed
 
 ## [0.0.2] - 2021-05-01

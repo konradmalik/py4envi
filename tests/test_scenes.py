@@ -1,3 +1,4 @@
+from pathlib import Path
 import tempfile
 from unittest.mock import patch, Mock
 from typing import Callable
@@ -29,6 +30,7 @@ def test_get_redirection():
     redirection = scenes._get_redirection(
         "fake token", 1, "some artifact", scene_api_fun=_gen_mocked_scene_api(200)
     )
+    assert redirection is not None
     assert redirection.status == 200
     assert redirection.geturl().startswith("http")
 
@@ -63,6 +65,7 @@ def test_download_scene_artifact():
     bts = "abcd1234_%$#".encode()
 
     with tempfile.TemporaryDirectory() as dir:
+        pdir = Path(dir)
         with patch("py4envi.util.requests.get") as mock_get:
             # Configure the mock to return a proper response
             mock_get.return_value.ok = True
@@ -73,5 +76,5 @@ def test_download_scene_artifact():
             }
 
             # Call the service, which will send a request to the server.
-            path = scenes.download_scene_artifact(sa, dir)
+            path = scenes.download_scene_artifact(sa, pdir)
             assert str(path).endswith(sa.file_name)

@@ -74,7 +74,6 @@ def test_get_or_request_token():
     tkn = token.get_or_request_token(
         "", "", auth_api_fun=_gen_mocked_auth_api(test_token), force=True
     )
-    assert tkn is not None
     assert tkn == test_token
 
     # we should get error because we are forcing
@@ -82,13 +81,13 @@ def test_get_or_request_token():
         tkn = token.get_or_request_token(
             "", "", auth_api_fun=_gen_mocked_auth_api(None), force=True
         )
+        failed = False
     except BaseException:
-        tkn = None
-    assert tkn is None
+        failed = True
+    assert failed
 
     # now just read that cached one
     tkn = token.get_or_request_token(
         "", "", auth_api_fun=_gen_mocked_auth_api(None), force=False
     )
-    assert tkn is not None
     assert tkn == test_token
