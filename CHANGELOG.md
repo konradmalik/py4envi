@@ -15,13 +15,15 @@ Unreleased changes will be listed here.
 
 ### Fixed
 
+- CHANGELOG headers
+
 ## [0.0.3] - 2021-09-13
 
 Forked repo
 
 ### Added
 
-## Changed
+### Changed
 
 - License to private
 - mypy to 0.910
@@ -35,6 +37,6 @@ Initial release with fixed pypi version
 
 ### Added
 
-## Changed
+### Changed
 
 ### Fixed
